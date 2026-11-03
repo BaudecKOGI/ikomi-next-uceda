@@ -1,17 +1,20 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { productos } from "@/data/productos";
 import type { Metadata } from "next";
 
-// Forzamos a que esta página se genere en el servidor bajo demanda,
-// y no de forma estática durante el build.
-export const dynamic = 'force-dynamic';
+type Props = { params: Promise<{ slug: string }> };
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export function generateStaticParams() {
+  return productos.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const producto = productos.find((p) => p.slug === slug);
 
   if (!producto) {
-    return { title: 'Producto no encontrado' };
+    return { title: "Producto no encontrado" };
   }
 
   return {
@@ -20,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function DetalleProducto({ params }: { params: Promise<{ slug: string }> }) {
+export default async function DetalleProducto({ params }: Props) {
   const { slug } = await params;
   const producto = productos.find((p) => p.slug === slug);
 
@@ -34,7 +37,7 @@ export default async function DetalleProducto({ params }: { params: Promise<{ sl
       <p>{producto.descripcion}</p>
       <p>Precio: ${producto.precio}</p>
       <br />
-      <a href="/productos">Volver a productos</a>
+      <Link href="/productos">Volver a productos</Link>
     </div>
   );
 }
