@@ -34,3 +34,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Árbol de componentes
+
+```
+RootLayout (layout.tsx) - Server
+├── Navbar - Client, usa usePathname y useState
+├── main
+│   ├── Inicio: Hero - Server
+│   ├── Nosotros: SectionTitle - Server
+│   ├── Servicios: SectionTitle - Server
+│   ├── Productos: SectionTitle - Server, ProductCard - Server
+│   ├── Producto detalle: Image y Link - Server
+│   ├── Marcas: SectionTitle - Server
+│   ├── Contacto: SectionTitle - Server, ContactForm - Server
+│   └── 404 - Server
+└── Footer - Server
+```
+
+Solo Navbar es Client Component, porque necesita saber la ruta actual y abrir el menú. Todo lo demás es Server Component.

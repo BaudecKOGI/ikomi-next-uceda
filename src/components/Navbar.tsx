@@ -3,15 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-
-const enlaces = [
-  { href: "/", texto: "Inicio" },
-  { href: "/nosotros", texto: "Nosotros" },
-  { href: "/servicios", texto: "Servicios" },
-  { href: "/productos", texto: "Productos" },
-  { href: "/marcas", texto: "Marcas" },
-  { href: "/contacto", texto: "Contáctenos" },
-];
+import { enlaces } from "@/data/enlaces";
 
 export default function Navbar() {
   const pathname = usePathname();

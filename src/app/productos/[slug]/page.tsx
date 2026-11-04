@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { productos } from "@/data/productos";
@@ -32,12 +33,32 @@ export default async function DetalleProducto({ params }: Props) {
   }
 
   return (
-    <div>
-      <h1>{producto.nombre}</h1>
-      <p>{producto.descripcion}</p>
-      <p>Precio: ${producto.precio}</p>
-      <br />
-      <Link href="/productos">Volver a productos</Link>
-    </div>
+    <section className="mx-auto max-w-5xl px-4 py-12">
+      <Link href="/productos" className="text-ikomi-azul underline">
+        ← Volver a productos
+      </Link>
+      <div className="mt-6 grid items-center gap-8 md:grid-cols-2">
+        <Image
+          src={producto.imagen}
+          alt={`${producto.nombre}, repuesto para camiones de IKOMI Perú`}
+          width={600}
+          height={600}
+          priority
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="h-auto w-full rounded-lg shadow-md"
+        />
+        <div>
+          <p className="text-sm font-semibold uppercase text-ikomi-rojo">{producto.categoria}</p>
+          <h1 className="mt-2 text-3xl font-extrabold">{producto.nombre}</h1>
+          <p className="mt-4 text-gray-700">{producto.descripcion}</p>
+          <Link
+            href="/contacto"
+            className="mt-6 inline-block rounded bg-ikomi-rojo px-5 py-2 font-semibold text-white transition-colors hover:bg-red-700"
+          >
+            Consultar este producto
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

@@ -47,3 +47,11 @@
 * **Resumen de la respuesta:** La IA me dijo que agregara la metadata arriba del export default de page.tsx sin haber visto mi archivo, y el archivo quedó sin export default, entonces el build falló con el error Property default is missing.
 * **Decisión tomada:** Modificado.
 * **Justificación:** Antes page.tsx no tenía el componente, después puse el archivo completo con la metadata y la función Home.
+
+## Entrada 7: Componentes y estilos de la Parte 4
+
+* **Objetivo:** Hacer los componentes, los estilos y las pantallas del sitio de IKOMI.
+* **Prompt utilizado:** Pasé las capturas del profesor y el enunciado de la Parte 4 y pedí los componentes y las páginas.
+* **Resumen de la respuesta:** La IA me dio los componentes Footer, Hero, ProductCard, SectionTitle y ContactForm, la fuente con next/font, las imágenes con next/image, y las páginas con Tailwind.
+* **Decisión tomada:** Aceptado.
+* **Justificación:** Lo revisé en 375, 768 y 1280 de ancho y entendí qué hace cada componente, y cambié los textos de productos por los de IKOMI.

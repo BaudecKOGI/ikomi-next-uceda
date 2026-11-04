@@ -27,3 +27,13 @@
 * **Con Link:** Al cambiar de página no se recarga todo, evidencia en evidencias/network-link.png.
 * **Con a href:** La página se recarga completa, evidencia en evidencias/network-a-href.png.
 * **Conclusión:** Link cambia de página sin recargar, por eso se siente más rápido que a href.
+
+## Decisiones de la Parte 4
+
+* **Estrategia de estilos:** Elegí Tailwind CSS, porque me deja hacer el diseño responsive en cada componente con clases como md y lg, sin crear un archivo de estilos por componente como pasaba con CSS Modules, y Bootstrap lo descarté porque trae estilos ya hechos y el sitio de IKOMI quedaría parecido a cualquier otro.
+* **Colores y tipografía definidos una sola vez:** Los colores azul, rojo, amarillo y oscuro de IKOMI están en globals.css dentro de theme, y la fuente Raleway está en layout.tsx, así que si cambio un color se cambia en todo el sitio.
+* **Beneficio de next/image:** Carga las fotos del tamaño que necesita cada pantalla y las deja para cargar después cuando no se ven, y como tiene ancho y alto definidos la página no salta mientras cargan, algo muy útil en Productos que tiene muchas fotos.
+* **Beneficio de next/font:** Descarga la fuente Raleway al hacer el build y la sirve desde el mismo sitio, así el navegador no pide la fuente a Google en cada visita y el texto no cambia de letra cuando termina de cargar.
+* **Animación con propósito:** Al pasar el mouse por una tarjeta de producto, la tarjeta sube un poco y la foto se agranda, y con esto el usuario ve que puede hacer clic para entrar al detalle del producto.
+* **Componentes reutilizables:** Hice Navbar, Footer, Hero, ProductCard, SectionTitle y ContactForm, y la lista de enlaces está en un solo archivo que usan Navbar y Footer, para no repetirla.
+* **Árbol de componentes:** Está en el README.md.

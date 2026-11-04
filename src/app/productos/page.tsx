@@ -1,25 +1,28 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import { productos } from "@/data/productos";
-import type { Metadata } from "next"; // <-- Esta línea faltaba
+import SectionTitle from "@/components/SectionTitle";
+import ProductCard from "@/components/ProductCard";
 
 export const metadata: Metadata = {
-  title: 'Productos | IKOMI Perú',
-  description: 'Catálogo de productos tecnológicos de IKOMI Perú.',
+  title: "Productos | IKOMI Perú",
+  description: "Catálogo de repuestos para camiones de IKOMI Perú.",
 };
 
 export default function Productos() {
   return (
-    <div>
-      <h1>Página de Productos - IKOMI</h1>
-      <ul>
-        {productos.map((prod) => (
-          <li key={prod.slug}>
-            <Link href={`/productos/${prod.slug}`}>
-              {prod.nombre} - ${prod.precio}
-            </Link>
-          </li>
+    <section className="mx-auto max-w-6xl px-4 py-12">
+      <SectionTitle titulo="Nuestros productos" subtitulo="Los mejores productos y precios." />
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {productos.map((p) => (
+          <ProductCard
+            key={p.slug}
+            slug={p.slug}
+            nombre={p.nombre}
+            categoria={p.categoria}
+            imagen={p.imagen}
+          />
         ))}
-      </ul>
-    </div>
+      </div>
+    </section>
   );
 }
