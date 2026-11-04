@@ -37,3 +37,11 @@
 * **Animación con propósito:** Al pasar el mouse por una tarjeta de producto, la tarjeta sube un poco y la foto se agranda, y con esto el usuario ve que puede hacer clic para entrar al detalle del producto.
 * **Componentes reutilizables:** Hice Navbar, Footer, Hero, ProductCard, SectionTitle y ContactForm, y la lista de enlaces está en un solo archivo que usan Navbar y Footer, para no repetirla.
 * **Árbol de componentes:** Está en el README.md.
+
+## Reflexión
+
+Entiendo mejor gracias a la IA la diferencia entre credenciales e identidad en Git, ya que al estar usando una mac y no mi laptop tuve que configurar la terminal para que los commits salgan con mi nombre de forma correcta, también entendí por qué la Navbar es Client Component y el resto del sitio puede ser Server Component, porque solo la Navbar necesita saber en qué página estoy y abrir el menú, y con el experimento del Network vi que Link no recarga toda la página como hace a href.
+
+Lo que tuve que razonar por mi cuenta fue arreglar los errores del build, porque la IA me dio código que no era compatible con mi proyecto, como force-dynamic con Cache Components y una configuración de Tailwind que no correspondía, y tuve que leer el error completo y revisar mis archivos para ver qué faltaba, incluso una vez me dejó la página de inicio sin su componente.
+
+La próxima vez voy a revisar el código antes de pegarlo y a probar el build en cada cambio, para no pegar soluciones sin entender qué hacen.

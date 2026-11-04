@@ -1,39 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IKOMI Perú - Sitio web corporativo con Next.js
 
-## Getting Started
+Réplica del sitio web de IKOMI Perú, hecha con Next.js, App Router, TypeScript y Tailwind CSS, para el laboratorio de Desarrollo de Aplicaciones Web Avanzado.
 
-First, run the development server:
+* Repositorio: https://github.com/BaudecKOGI/ikomi-next-uceda
+* Sitio desplegado: PENDIENTE, aquí va el enlace cuando termine el despliegue
+
+## Requisitos
+
+* Node.js 20.9 o superior
+* npm
+* Git
+
+## Cómo instalar y ejecutar
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/BaudecKOGI/ikomi-next-uceda.git
+cd ikomi-next-uceda
+```
+
+2. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecutar el proyecto en modo desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Abrir http://localhost:3000 en el navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Otros comandos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comando | Para qué sirve |
+| :--- | :--- |
+| `npm run dev` | Ejecuta el sitio en modo desarrollo, con recarga automática |
+| `npm run build` | Revisa errores y prepara el sitio para producción |
+| `npm run start` | Ejecuta el sitio ya construido, hay que correr `npm run build` antes |
 
-## Learn More
+## Rutas del sitio
 
-To learn more about Next.js, take a look at the following resources:
+| Ruta | Página |
+| :--- | :--- |
+| `/` | Inicio |
+| `/nosotros` | Nosotros |
+| `/servicios` | Servicios |
+| `/productos` | Lista de productos |
+| `/productos/[slug]` | Detalle de cada producto |
+| `/marcas` | Marcas |
+| `/contacto` | Contáctenos |
+| Cualquier otra | Página 404 personalizada |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estructura del proyecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/            Páginas, layout raíz y página 404
+├── components/     Navbar, Footer, Hero, ProductCard, SectionTitle y ContactForm
+└── data/           Datos de productos y lista de enlaces
+public/images/      Imágenes del sitio
+evidencias/         Capturas de build, Network y responsive
+DECISIONES.md       Decisiones y justificaciones de cada parte
+BITACORA_IA.md      Bitácora del uso de IA
+```
 
 ## Árbol de componentes
 

@@ -16,7 +16,7 @@
 * **Decisión tomada:** Aceptado.
 * **Justificación:** Lo comprobé con git log y vi que el correo de los commits era el viejo.
 
-## Entrada 3: Error de build con force-dynamic, error de la IA número 1
+## Entrada 3: Error de build con force-dynamic
 
 * **Objetivo:** Que el build pasara en Render.
 * **Prompt utilizado:** Pegué el error del despliegue de Render y pregunté qué hacer.
@@ -24,15 +24,7 @@
 * **Decisión tomada:** Aceptado.
 * **Justificación:** Antes tenía force-dynamic en la página de producto, después lo quité y usé generateStaticParams, porque mis 3 productos están en un archivo local y no cambian.
 
-## Entrada 4: Configuración incorrecta de next.config.ts, error de la IA número 2
-
-* **Objetivo:** Arreglar el build que seguía fallando.
-* **Prompt utilizado:** Pegué mi next.config.ts y el error que decía que partialPrefetching necesita cacheComponents.
-* **Resumen de la respuesta:** La IA dijo que partialPrefetching necesita cacheComponents, que yo ya no usaba, y que el loader de turbopack para Tailwind no era el correcto, porque Tailwind se conecta con PostCSS.
-* **Decisión tomada:** Aceptado.
-* **Justificación:** Antes tenía partialPrefetching y el loader de turbopack, después dejé next.config.ts vacío y creé postcss.config.mjs con @tailwindcss/postcss.
-
-## Entrada 5: Navbar con enlace activo y menú responsive
+## Entrada 4: Navbar con enlace activo y menú responsive
 
 * **Objetivo:** Crear la barra de navegación de la Parte 3.
 * **Prompt utilizado:** Pedí la barra de navegación con Link, enlace activo y menú hamburguesa.
@@ -40,18 +32,84 @@
 * **Decisión tomada:** Aceptado.
 * **Justificación:** Cumple los puntos 3.1 a 3.3, y entendí que usePathname da la ruta actual y que useState abre y cierra el menú.
 
-## Entrada 6: Página de inicio sin export default, error de la IA número 3
-
-* **Objetivo:** Agregar metadata a cada página.
-* **Prompt utilizado:** Pasé mis páginas y pedí la metadata de cada una.
-* **Resumen de la respuesta:** La IA me dijo que agregara la metadata arriba del export default de page.tsx sin haber visto mi archivo, y el archivo quedó sin export default, entonces el build falló con el error Property default is missing.
-* **Decisión tomada:** Modificado.
-* **Justificación:** Antes page.tsx no tenía el componente, después puse el archivo completo con la metadata y la función Home.
-
-## Entrada 7: Componentes y estilos de la Parte 4
+## Entrada 5: Componentes y estilos de la Parte 4
 
 * **Objetivo:** Hacer los componentes, los estilos y las pantallas del sitio de IKOMI.
 * **Prompt utilizado:** Pasé las capturas del profesor y el enunciado de la Parte 4 y pedí los componentes y las páginas.
 * **Resumen de la respuesta:** La IA me dio los componentes Footer, Hero, ProductCard, SectionTitle y ContactForm, la fuente con next/font, las imágenes con next/image, y las páginas con Tailwind.
 * **Decisión tomada:** Aceptado.
 * **Justificación:** Lo revisé en 375, 768 y 1280 de ancho y entendí qué hace cada componente, y cambié los textos de productos por los de IKOMI.
+
+## Errores de la IA detectados y corregidos
+
+### Caso 1: force-dynamic en la ruta de producto
+
+Qué hizo mal la IA: propuso force-dynamic, que no es compatible con Cache Components, y el build fallaba.
+
+Antes:
+
+```tsx
+export const dynamic = 'force-dynamic';
+```
+
+Después:
+
+```tsx
+export function generateStaticParams() {
+  return productos.map((p) => ({ slug: p.slug }));
+}
+```
+
+Corrección: quité force-dynamic y usé generateStaticParams, porque mis productos están en un archivo local y no cambian, entonces las páginas se arman en el build.
+
+### Caso 2: configuración de Tailwind y next.config.ts
+
+Qué hizo mal la IA: dejó partialPrefetching, que necesita cacheComponents, y un loader de turbopack para Tailwind que no corresponde a Next.js.
+
+Antes:
+
+```ts
+const nextConfig: NextConfig = {
+  partialPrefetching: true,
+  turbopack: {
+    rules: { "*.css": { loaders: ["@tailwindcss/turbopack"], as: "*.css" } },
+  },
+};
+```
+
+Después:
+
+```ts
+const nextConfig: NextConfig = {};
+```
+
+Y se creó postcss.config.mjs con el plugin @tailwindcss/postcss.
+
+Corrección: Tailwind se conecta a Next.js con PostCSS, y partialPrefetching no se necesita porque quité Cache Components.
+
+### Caso 3: página de inicio sin export default
+
+Qué hizo mal la IA: me dijo que agregara la metadata arriba del export default sin ver mi archivo, y page.tsx quedó sin componente, entonces el build falló con el error Property default is missing.
+
+Antes:
+
+```tsx
+export const metadata = {
+  title: "Inicio | IKOMI Perú",
+};
+```
+
+Después:
+
+```tsx
+export const metadata: Metadata = {
+  title: "Inicio | IKOMI Perú",
+  description: "Repuestos en general para camiones de todas las marcas.",
+};
+
+export default function Home() {
+  return <Hero /* props */ />;
+}
+```
+
+Corrección: puse el archivo completo con la metadata y el componente, y aprendí a leer el error del build para ver qué faltaba.
